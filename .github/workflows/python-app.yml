@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os : [ubuntu-latest]
+        os : [ubuntu-latest, windows-latest]
         python-version: [3.7, 3.8]
     
     services:
@@ -69,19 +69,20 @@ jobs:
             export C_INCLUDE_PATH=/usr/include/gdal
             pip install GDAL==3.2.3 
             sudo apt-get install -y --force-yes postgis
-          if [ "windows-latest" == "${{ matrix.os }}" ]; then
+      
           
           
       - name: Setup paths and files
         run : |
-          cd ..
-          chmod 0755 retriever/cli_tools/entrypoint.sh
-          sh retriever/cli_tools/entrypoint.sh
-          echo "export PATH="/usr/bin/python:$PATH"" >> ~/.profile
-          echo "export PYTHONPATH="/usr/bin/python:$PYTHONPATH"" >> ~/.profile
-          echo "export PGPASSFILE="~/.pgpass"" >> ~/.profile
-          chmod 0644 ~/.profile
-      
+          if [ "ubuntu-latest" == "${{ matrix.os }}" ]; then
+            cd ..
+            chmod 0755 retriever/cli_tools/entrypoint.sh
+            sh retriever/cli_tools/entrypoint.sh
+            echo "export PATH="/usr/bin/python:$PATH"" >> ~/.profile
+            echo "export PYTHONPATH="/usr/bin/python:$PYTHONPATH"" >> ~/.profile
+            echo "export PGPASSFILE="~/.pgpass"" >> ~/.profile
+            chmod 0644 ~/.profile
+
       - name: PostGIS check version
         run : |
           export PGPASSWORD='Password12!'
