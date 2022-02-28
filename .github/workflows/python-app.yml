@@ -18,21 +18,21 @@ jobs:
         os: [windows-latest, ubuntu-latest]
         python-version: [3.7, 3.8]
     
-    services:
-        mysqldb_retriever:
-          image: mysql:5.7
-          env:
-            MYSQL_USER: travis
-            MYSQL_PASSWORD: Password12!
-            MYSQL_ROOT_PASSWORD: Password12!
-            MYSQL_DATABASE: testdb_retriever
-          ports:
-            - 3306:3306
-          options: >-
-            --health-cmd="mysqladmin ping"
-            --health-interval=10s
-            --health-timeout=5s
-            --health-retries=3
+#     services:
+#         mysqldb_retriever:
+#           image: mysql:5.7
+#           env:
+#             MYSQL_USER: travis
+#             MYSQL_PASSWORD: Password12!
+#             MYSQL_ROOT_PASSWORD: Password12!
+#             MYSQL_DATABASE: testdb_retriever
+#           ports:
+#             - 3306:3306
+#           options: >-
+#             --health-cmd="mysqladmin ping"
+#             --health-interval=10s
+#             --health-timeout=5s
+#             --health-retries=3
 
     steps:
       - uses: actions/checkout@v2
