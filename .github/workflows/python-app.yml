@@ -37,13 +37,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
  
-      - name: Set up Postgresql with Postgis
-        uses: huaxk/postgis-action@v1
-        with:
-          postgresql version: '11'
-          postgresql user: 'postgres'
-          postgresql password: 'Password12!'
-          postgresql db: 'testdb_retriever'
+#       - name: Set up Postgresql with Postgis
+#         uses: huaxk/postgis-action@v1
+#         with:
+#           postgresql version: '11'
+#           postgresql user: 'postgres'
+#           postgresql password: 'Password12!'
+#           postgresql db: 'testdb_retriever'
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
