@@ -58,7 +58,7 @@ jobs:
           TZ: America/New_York
           DEBIAN_FRONTEND: noninteractive
         run: |
-          pip install GDAL==3.0.2
+          pip install numpy
           
       - name: Setup paths and files
         run : |
